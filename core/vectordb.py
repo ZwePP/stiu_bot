@@ -1,15 +1,16 @@
 import chromadb
 _chroma_path =  "./chroma_langchain_db"
+COLLECTION_NAME = "handbook_embeddings"
 
-def create_chromadb(page_content, page_content_vectors, id_list, metadata_list):
-    
-    chroma_client = chromadb.PersistentClient(_chroma_path)
-    
-    collection = chroma_client.get_or_create_collection(name="handbook_embeddings_collections")
-    
+
+def get_collections():
+    client = chromadb.PersistentClient(path=_chroma_path)
+    return client.get_or_create_collection(name=COLLECTION_NAME)
+
+def add_to_collection(collection, documents, embeddings, ids, metadatas):
     collection.add(
-        documents=page_content,
-        embeddings=page_content_vectors,
-        ids=id_list,
-        metadatas= metadata_list
+        documents=documents,
+        embeddings=embeddings,
+        ids=ids,
+        metadatas= metadatas
     )
