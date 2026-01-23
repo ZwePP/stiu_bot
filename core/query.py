@@ -2,11 +2,8 @@
 from .embed import vector_embedding
 from .vectordb import get_collections
 
-
-
-
 #search chroma with vectorized query
-def search_chroma(query, k=3):
+def search_chroma(query, k=1):
     query_vector = vector_embedding(query)
     collection = get_collections()
 
@@ -15,3 +12,7 @@ def search_chroma(query, k=3):
         n_results = k
     )
     return result
+
+if __name__ == "__main__":
+    result = search_chroma("Location of a campus")
+    print(result['documents'][0])
