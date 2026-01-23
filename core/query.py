@@ -3,7 +3,7 @@ from .embed import vector_embedding
 from .vectordb import get_collections
 
 #search chroma with vectorized query
-def search_chroma(query, k=1):
+def search_chroma(query, k=3):
     query_vector = vector_embedding(query)
     collection = get_collections()
 

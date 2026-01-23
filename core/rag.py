@@ -1,7 +1,5 @@
 from core.query import search_chroma
 from ollama import chat
-from ollama import ChatResponse
-from langchain_core.prompts import PromptTemplate
 _CHAT_MODEL = 'mistral'
 
 def ask_handbook(question):
@@ -12,7 +10,7 @@ def ask_handbook(question):
         messages=[
             {
                 "role": "system",
-                "content" : f"You are a helpful university assistant. You can only answer the information provided. {context_text}"
+                "content" : f"You are a helpful university assistant. You can only answer the information provided.  {context_text}. Be short and concise"
             },
             {
                 "role" : "user",
@@ -21,7 +19,7 @@ def ask_handbook(question):
 
         ]
     )
-    return response["message"]["content"]
+    return response["message"]["content"] #Return generated string
 
 
 
